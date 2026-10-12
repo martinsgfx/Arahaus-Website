@@ -1,26 +1,232 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-accent: #fbba09;
+  --color-gold: #f5bf26;
+  --color-rust: #af4c0f;
+  --color-ink: #0f0f0f;
+  --color-charcoal: #1e1e1e;
+  --color-muted: #5e5e5e;
+  --color-mist: #d9d9d9;
+  --color-maroon: #a53621;
+  --color-umber: #492006;
+
+  --font-sans:
+    "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-neue-haas: var(--font-neue-haas);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-ink);
+}
+
+/* Loader animation styles */
+
+.loader {
+  --arc: 20vh; /* arc depth on desktop */
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .loader {
+    --arc: 2vh; /* shallower arc on phones */
+  }
+}
+
+.loader-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: panel-exit 1.2s cubic-bezier(0.76, 0, 0.24, 1) 2.2s forwards;
+}
+
+.loader-panel-body {
+  height: 100vh;
+  background: var(--color-maroon);
+}
+
+.loader-panel-arc {
+  display: block;
+  width: 100%;
+  height: var(--arc);
+  margin-top: -1px; /* hides any hairline between the two parts */
+  fill: var(--color-maroon);
+}
+
+.loader-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-logo-inner {
+  width: clamp(120px, 12vw, 240px);
+  animation: logo-sequence 3.4s linear forwards;
+}
+
+@keyframes panel-exit {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes logo-sequence {
+  0% {
+    transform: translateY(70vh);
+    filter: blur(16px);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  35% {
+    transform: translateY(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+  65% {
+    transform: translateY(0);
+    filter: blur(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  100% {
+    transform: translateY(-80vh);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    display: none;
+  }
+}
+
+/* Play icon and text animations */
+
+.play-icon,
+.play-text {
+  animation-duration: 4s;
+  animation-delay: 3.4s; /* only applies before the first run */
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+}
+
+.play-icon {
+  animation-name: play-icon;
+}
+
+.play-text {
+  animation-name: play-text;
+}
+
+@keyframes play-icon {
+  0% {
+    transform: scale(0) rotate(90deg);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.34, 1.3, 0.64, 1);
+  }
+  22% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+  37.5%,
+  100% {
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes play-text {
+  0%,
+  30% {
+    transform: translateY(6px);
+    opacity: 0;
+    animation-timing-function: ease-out;
+  }
+  37.5%,
+  85% {
+    transform: translateY(0);
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+  92.5%,
+  100% {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-icon {
+    display: none;
+  }
+  .play-text {
+    animation: none;
+  }
+}
+
+
+.piece-pulse {
+  animation: piece-pulse 3.6s ease-in-out infinite;
+}
+
+@keyframes piece-pulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.6) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece-pulse {
+    animation: none;
+  }
+}
+
+.letter-fill {
+  animation: letter-fill 3.6s ease-in-out infinite;
+}
+
+@keyframes letter-fill {
+  0%,
+  35% {
+    opacity: 0;
+  }
+  50%,
+  80% {
+    opacity: 1;
+  }
+  95%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-fill {
+    animation: none;
+  }
 }
