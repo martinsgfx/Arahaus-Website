@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import RateCard from "@/components/rate-card/RateCard";
 import PrintingServices from "@/components/rate-card/PrintingServices";
 
-export const metadata: Metadata = { title: "Rate Card" };
+export const metadata: Metadata = {
+  title: "Rate Card",
+  description:
+    "Arahaus services pricelist: logo and brand design, print materials, social media graphics and packages for small businesses, large businesses and international clients.",
+  alternates: { canonical: "/rate-card" },
+};
 
 export default function RateCardPage() {
   return (

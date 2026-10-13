@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import WorksGallery from "@/components/works/WorksGallery";
 
-export const metadata: Metadata = { title: "Works" };
+export const metadata: Metadata = {
+  title: "Works",
+  description:
+    "Selected works by Arahaus: branding, print, packaging and event design for businesses and families.",
+  alternates: { canonical: "/works" },
+};
 
 export default function WorksPage() {
   return (

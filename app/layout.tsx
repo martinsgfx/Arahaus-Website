@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import Footer from "@/components/Footer";
 import localFont from "next/font/local";
+import { siteUrl } from "@/lib/site";
 
 //Font imports
 const neueHaas = localFont({
@@ -48,6 +49,17 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Arahaus",
+  url: siteUrl,
+  logo: `${siteUrl}/logo-color.png`,
+  email: "arahauscompany@gmail.com",
+  telephone: "+2348169271057",
+  sameAs: [] as string[], // add your Instagram, LinkedIn and TikTok page addresses
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -59,6 +71,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Loader />
         <Navbar />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationData).replace(/</g, "\\u003c"),
+          }}
+        />
         <div className="flex-1">{children}</div>
         <Footer />
       </body>
