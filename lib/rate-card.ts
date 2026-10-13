@@ -391,7 +391,7 @@ const internationalClients: RateCardData = {
     {
       name: "Corporate Identity Package",
       tag: "Business",
-      price: "₦250,000",
+      price: "$800",
       items: [
         "Primary logos (1 concept + 2 revisions)",
         "Secondary logos",
@@ -404,7 +404,7 @@ const internationalClients: RateCardData = {
     {
       name: "Starter Package",
       tag: "Socials",
-      price: "₦70,000",
+      price: "$80",
       items: [
         "5 social media posts, stories, or display ad graphics",
         "2 rounds of revisions",
@@ -414,7 +414,7 @@ const internationalClients: RateCardData = {
     {
       name: "Second Package",
       tag: "Socials",
-      price: "₦150,000",
+      price: "$250",
       items: [
         "15 social media posts, stories, or display ad graphics",
         "2 rounds of revisions",
@@ -424,7 +424,7 @@ const internationalClients: RateCardData = {
     {
       name: "Custom Package",
       tag: "Socials",
-      price: "₦200,000",
+      price: "$200",
       items: [
         "16 and above for social media posts, stories, or display ad graphics",
         "2 rounds of revisions",
@@ -434,7 +434,7 @@ const internationalClients: RateCardData = {
     {
       name: "Wedding Package",
       tag: "Events",
-      price: "₦80,000",
+      price: "$100",
       items: [
         "Backdrops",
         "Product Labels for souvenirs",
@@ -445,7 +445,7 @@ const internationalClients: RateCardData = {
     {
       name: "Concert/Tech Package",
       tag: "Events",
-      price: "₦50,000",
+      price: "$70",
       items: [
         "Ticket Design",
         "Merch Branding",

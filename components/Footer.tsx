@@ -24,13 +24,13 @@ const socialLinks = [
 
 const contactLinks: ContactLink[] = [
   {
-    href: "https://wa.me/2348169271057",
+    href: "https://wa.me/2349093303345",
     label: "+234 8 169 271 057",
     icon: <Image src="/icons/whatsapp.svg" alt="" width={20} height={20} />,
     external: true,
   },
   {
-    href: "tel:+2349093303345",
+    href: "tel:+2348169271057",
     label: "090 93 303 345",
     icon: <Image src="/icons/phone.svg" alt="" width={20} height={20} />,
   },
