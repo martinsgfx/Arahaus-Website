@@ -3,11 +3,24 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+const STORAGE_KEY = "arahaus-loader-seen";
+
 export default function Loader() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDone(true), 3500);
+    const hasSeenLoader = window.localStorage.getItem(STORAGE_KEY) === "true";
+
+    if (hasSeenLoader) {
+      setDone(true);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setDone(true);
+      window.localStorage.setItem(STORAGE_KEY, "true");
+    }, 3500);
+
     return () => clearTimeout(timer);
   }, []);
 

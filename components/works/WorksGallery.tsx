@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import FeedRow from "./FeedRow";
-import FullCard from "./FullCard";
+import FeedRow from "@/components/works/FeedRow";
+import FullCard from "@/components/works/FullCard";
+import MobileGrid from "@/components/works/MobileGrid";
 import { projects } from "@/lib/works";
 
 type View = "feed" | "full";
 
-const views: { id: View; label: string }[] = [
-  { id: "feed", label: "Feed" },
-  { id: "full", label: "Full" },
-];
+const tabClass = (active: boolean) =>
+  `transition-colors ${active ? "text-ink" : "text-ink/40 hover:text-ink/70"}`;
 
 export default function WorksGallery() {
   const [view, setView] = useState<View>("feed");
@@ -18,34 +17,44 @@ export default function WorksGallery() {
 
   return (
     <section>
-      <div className="mt-16 flex items-center justify-center px-4 md:justify-between md:px-10">
+      <div className="mt-16 flex flex-col items-center gap-6 px-4 md:flex-row md:justify-between md:px-10">
         <h2 className="text-2xl tracking-[-0.02em] md:text-[32px]">
           Selected Works
           <sup className="ml-1 text-xs text-muted md:text-sm">({count})</sup>
         </h2>
 
-        <div className="hidden gap-6 text-[32px] tracking-[-0.02em] md:flex">
-          {views.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              aria-pressed={view === id}
-              onClick={() => setView(id)}
-              className={`transition-colors ${
-                view === id ? "text-ink" : "text-ink/40 hover:text-ink/70"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+        <div className="flex gap-20 text-2xl tracking-[-0.02em] md:gap-6 md:text-[32px]">
+          <button
+            type="button"
+            aria-pressed={view === "feed"}
+            onClick={() => setView("feed")}
+            className={tabClass(view === "feed")}
+          >
+            <span className="md:hidden">Grid</span>
+            <span className="hidden md:inline">Feed</span>
+          </button>
+          <button
+            type="button"
+            aria-pressed={view === "full"}
+            onClick={() => setView("full")}
+            className={tabClass(view === "full")}
+          >
+            Full
+          </button>
         </div>
       </div>
 
-      {/* Phones: always the full cards */}
-      <div className="mt-10 flex flex-col gap-5 px-3 md:hidden">
-        {projects.map((project) => (
-          <FullCard key={project.slug} project={project} />
-        ))}
+      {/* Phones: the grid or the full cards, depending on the tab */}
+      <div className="mt-10 md:hidden">
+        {view === "feed" ? (
+          <MobileGrid projects={projects} />
+        ) : (
+          <div className="flex flex-col gap-5 px-3">
+            {projects.map((project) => (
+              <FullCard key={project.slug} project={project} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Web: feed or full, depending on the tab */}

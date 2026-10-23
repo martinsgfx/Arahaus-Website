@@ -32,8 +32,8 @@ const SEQUENCE: number[][] = [
   [2, 3, 6, 9, 12],
 ];
 
-const START_DELAY_MS = 1000; // wait for the loader to finish
-const SHOW_MS = 1500; // how long a group stays before it hides
+const START_DELAY_MS = 3000; // wait for the loader to finish
+const SHOW_MS = 2000; // how long a group stays before it hides
 const GAP_MS = 0; // time after hiding before the next group appears
 
 export default function HeroGrid() {
@@ -69,7 +69,9 @@ export default function HeroGrid() {
           return (
             <div key={image.src} className="aspect-[312/167]">
               <div
-                className={`relative h-full ${isVisible ? "opacity-100" : "hidden"}`}
+                className={`relative h-full transition-opacity duration-200 ease-out ${
+                  isVisible ? "opacity-100" : "opacity-0"
+                }`}
               >
                 <Image
                   src={image.src}

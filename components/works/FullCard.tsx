@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Project } from "@/lib/works";
 
-const LOOP_MS = 2800; // time each foreground image stays
+const LOOP_MS = 1000; // time each foreground image stays
 
 export default function FullCard({ project }: { project: Project }) {
   const { name, images } = project;
@@ -73,7 +73,7 @@ export default function FullCard({ project }: { project: Project }) {
               alt={`${name} ${index + 1}`}
               fill
               sizes="(min-width: 768px) 400px, 85vw"
-              className={`object-cover transition-opacity duration-700 ${
+              className={`object-cover transition-opacity duration-300 ${
                 index === active ? "opacity-100" : "opacity-0"
               }`}
             />

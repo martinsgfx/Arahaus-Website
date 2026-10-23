@@ -19,7 +19,7 @@ const actionLinks = [
 const mobileLinks = [
   { href: "/", label: "Home" },
   ...navLinks,
-  ...actionLinks,
+  { href: "/rate-card", label: "Rate Card" },
 ];
 
 export default function Navbar() {
@@ -39,7 +39,10 @@ export default function Navbar() {
               priority
             />
           </Link>
-          <div className="hidden items-center gap-10 text-sm lg:flex" role="list">
+          <div
+            className="hidden items-center gap-10 text-sm lg:flex"
+            role="list"
+          >
             {navLinks.map((link) => (
               <div key={link.href} role="listitem">
                 <Link href={link.href}>{link.label}</Link>
@@ -76,30 +79,50 @@ export default function Navbar() {
             aria-expanded={open}
             onClick={() => setOpen((current) => !current)}
           >
-            {open ? <Image src="/icons/close.svg" alt="Close menu" width={42} height={42} /> : <Image src="/icons/menu.svg" alt="Open menu" width={42} height={42} />}
+            {open ? (
+              <Image
+                src="/icons/close.svg"
+                alt="Close menu"
+                width={42}
+                height={42}
+              />
+            ) : (
+              <Image
+                src="/icons/menu.svg"
+                alt="Open menu"
+                width={42}
+                height={42}
+              />
+            )}
           </button>
         </div>
       </nav>
 
-      {/* Mobile dropdown */}
+      {/* Mobile menu */}
       {open && (
-        <ul className="flex flex-col items-center gap-8 border-2 rounded-3xl bg-white mx-14 border-black/10 px-6 py-10 lg:hidden">
-          {mobileLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={
-                  link.href === "/contact"
-                    ? "rounded-2xl bg-black w-full text-white px-24 py-3 transition-colors "
-                    : undefined
-                }
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="mx-4 mb-4 rounded-[30px] bg-white px-[30px] pt-5 pb-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] lg:hidden">
+          <ul className="flex flex-col items-center text-lg font-light">
+            {mobileLinks.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-4"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="mt-5 flex h-[49px] items-center justify-center rounded-[22px] bg-black text-lg text-white"
+          >
+            Contact Us
+          </Link>
+        </div>
       )}
     </header>
   );
