@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="flex flex-col items-center gap-5">
           <h1
             className="text-7xl font-mediu leading-[0.95] tracking-[-0.005em] text-black md:text-7xl"
-            style={{ WebkitTextStroke: "0.8px #000000", textShadow: "0 0 1px rgba(0,0,0,0.25)" }}
+            style={{  textShadow: "0 0 1px rgba(0,0,0,0.25)" }}
           >
             We design{" "}
             <span className="  bg-linear-to-r from-rust via-rust to-[#492006] bg-clip-text text-transparent">
