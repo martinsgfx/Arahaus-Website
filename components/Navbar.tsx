@@ -56,8 +56,13 @@ export default function Navbar() {
           <Link
             href="/game"
             aria-label="Play game"
-            className="relative flex h-10 w-15 items-center justify-center bg-black text-white rounded-2xl inset-shadow-[inset_0_2px_5px_rgba(251,186,9,1.0)] "
+            className="relative flex h-10 w-15 items-center justify-center bg-[radial-gradient(ellipse_at_center,#000_20%,#6b5200_100%)] shadow-[0_4px_10px_rgba(0,0,0,0.3)] text-white rounded-2xl inset-shadow-[inset_0_2px_5px_rgba(251,186,9,1.0)] overflow-hidden "
           >
+            <span
+  aria-hidden="true"
+  className="grain pointer-events-none absolute inset-0 opacity-40"
+/>
+            
             <span className="play-icon absolute inset-0 flex items-center justify-center">
               <Puzzle size={21} className="rotate-45" />
             </span>
