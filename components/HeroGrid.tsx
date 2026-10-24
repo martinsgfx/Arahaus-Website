@@ -32,7 +32,7 @@ const SEQUENCE: number[][] = [
   [2, 3, 6, 9, 12],
 ];
 
-const START_DELAY_MS = 3000; // wait for the loader to finish
+const START_DELAY_MS = 1000; // wait for the loader to finish
 const SHOW_MS = 2000; // how long a group stays before it hides
 const GAP_MS = 0; // time after hiding before the next group appears
 
